@@ -3,6 +3,7 @@ package at.mkritzl.dezsys11.dezsys11;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -93,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         redirectRegister.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                redirectRegister();
+                redirect(RegisterActivity.class);
             }
         });
 
@@ -197,9 +198,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    private void redirectRegister() {
-        Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(register);
+    public void redirect(Class<? extends Activity> clazz) {
+        finish();
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
     }
 
     private boolean isEmailValid(String email) {
@@ -319,10 +321,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            this.response = RestHandler.register(getApplicationContext(), this.mEmail, this.mPassword);
-
-            // TODO: register the new account here.
-            return true;
+            try {
+                this.response = RestHandler.register(getApplicationContext(), this.mEmail, this.mPassword);
+                if (response.getStatus()==200) return true;
+            } catch (RestException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return false;
         }
 
         @Override
@@ -332,6 +338,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
+                redirect(HomeActivity.class);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
