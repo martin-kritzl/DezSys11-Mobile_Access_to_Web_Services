@@ -277,7 +277,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 
     }
 
-    public void redirect(Class<? extends Activity> clazz) {
+    private void redirect(Class<? extends Activity> clazz) {
         finish();
         Intent intent = new Intent(this, clazz);
         startActivity(intent);

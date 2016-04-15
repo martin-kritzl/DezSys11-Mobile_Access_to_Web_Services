@@ -73,7 +73,7 @@
                     android:layout_width="167dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/action_sign_in"
+                    android:text="@string/action_logout"
                     android:textStyle="bold"
                     android:layout_row="0"
                     android:layout_column="0" />

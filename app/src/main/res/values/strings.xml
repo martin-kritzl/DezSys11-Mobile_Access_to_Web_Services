@@ -19,5 +19,6 @@
     <string name="action_back_to_login">Back</string>
 
     <!-- Strings related to home -->
-    <string name="text_welcome">Sie wurden erfolgreich angemeldet</string>
+    <string name="text_welcome">You are successfully logged in</string>
+    <string name="action_logout">logout</string>
 </resources>

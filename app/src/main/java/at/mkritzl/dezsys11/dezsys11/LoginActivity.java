@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    public void redirect(Class<? extends Activity> clazz) {
+    private void redirect(Class<? extends Activity> clazz) {
         finish();
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
