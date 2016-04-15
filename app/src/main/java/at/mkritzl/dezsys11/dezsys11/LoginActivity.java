@@ -322,8 +322,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                this.response = RestHandler.register(getApplicationContext(), this.mEmail, this.mPassword);
+                this.response = RestHandler.login(getApplicationContext(), this.mEmail, this.mPassword);
                 if (response.getStatus()==200) return true;
+                System.out.println(response.getStatus());
+                System.out.println(response.getMessage());
             } catch (RestException e) {
                 e.printStackTrace();
                 return false;
@@ -337,7 +339,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
                 redirect(HomeActivity.class);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

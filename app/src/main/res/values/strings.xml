@@ -17,4 +17,7 @@
     <string name="title_activity_register">Register</string>
     <string name="action_register">Register</string>
     <string name="action_back_to_login">Back</string>
+
+    <!-- Strings related to home -->
+    <string name="text_welcome">Sie wurden erfolgreich angemeldet</string>
 </resources>
