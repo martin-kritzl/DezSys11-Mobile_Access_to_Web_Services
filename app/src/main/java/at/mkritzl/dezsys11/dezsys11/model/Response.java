@@ -1,4 +1,4 @@
-package at.mkritzl.dezsys11.dezsys11;
+package at.mkritzl.dezsys11.dezsys11.model;
 
 /**
  * Created by mkritzl on 15.04.2016.

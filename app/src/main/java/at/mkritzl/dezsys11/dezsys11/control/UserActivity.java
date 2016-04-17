@@ -1,4 +1,4 @@
-package at.mkritzl.dezsys11.dezsys11;
+package at.mkritzl.dezsys11.dezsys11.control;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -25,6 +25,9 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import at.mkritzl.dezsys11.dezsys11.R;
+import at.mkritzl.dezsys11.dezsys11.utils.UserValidation;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

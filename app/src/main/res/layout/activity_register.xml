@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="at.mkritzl.dezsys11.dezsys11.RegisterActivity">
+    tools:context=".control.RegisterActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -72,7 +72,7 @@
                 <Button
                     android:id="@+id/regsiter_button"
                     style="?android:textAppearanceSmall"
-                    android:layout_width="180dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/action_register"
@@ -83,7 +83,7 @@
                 <Button
                     style="?android:textAppearanceSmall"
                     android:id="@+id/back_to_login_button"
-                    android:layout_width="180dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/action_back_to_login"

@@ -1,4 +1,4 @@
-package at.mkritzl.dezsys11.dezsys11;
+package at.mkritzl.dezsys11.dezsys11.utils;
 
 import android.content.Context;
 
@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
+import at.mkritzl.dezsys11.dezsys11.model.Response;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
@@ -74,7 +75,7 @@ public class RestHandler {
                     response.setStatus(obj.getInt("status"));
                     response.setMessage(obj.getString("message"));
                 } else {
-                    throw new Exception("Response does not contain a status or a message");
+                    throw new RestException("Response does not contain a status or a message");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

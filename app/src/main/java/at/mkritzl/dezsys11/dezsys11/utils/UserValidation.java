@@ -1,10 +1,12 @@
-package at.mkritzl.dezsys11.dezsys11;
+package at.mkritzl.dezsys11.dezsys11.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import at.mkritzl.dezsys11.dezsys11.R;
 
 /**
  * Created by mkritzl on 17.04.2016.
