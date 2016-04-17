@@ -111,6 +111,7 @@ public class RegisterActivity extends UserActivity {
                 this.response = RestHandler.register(getApplicationContext(), this.mEmail, this.mPassword);
             } catch (RestException e) {
                 e.printStackTrace();
+                Toast.makeText(getApplicationContext(), R.string.error_server_unreachable, Toast.LENGTH_LONG).show();
                 return false;
             }
             return true;
@@ -126,7 +127,7 @@ public class RegisterActivity extends UserActivity {
                     redirect(LoginActivity.class);
                 } else if (this.response.getStatus()==403) {
                     mEmailView.setError(getString(R.string.error_user_already_assigned));
-                } else if(response.getStatus()==0) {
+                } else if(response.getStatus()==404) {
                     Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_LONG).show();
                 }
             } else {
