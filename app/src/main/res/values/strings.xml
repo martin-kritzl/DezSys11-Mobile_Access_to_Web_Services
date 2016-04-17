@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">DezSys11</string>
 
+    <!-- User validation-->
+    <string name="error_email_must_contain_at">Email must contain @</string>
+    <string name="error_email_must_contain_dot">Email must contain at least one dot</string>
+    <string name="error_email_too_long">Email must contain of less than 50 characters</string>
+    <string name="error_email_empty">Please enter an email</string>
+    <string name="error_password_too_short">Passwort must contain more than 5 characters</string>
+    <string name="error_password_too_long">Passwort must contain less than 50 characters</string>
+    <string name="error_password_empty">Please enter a password</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

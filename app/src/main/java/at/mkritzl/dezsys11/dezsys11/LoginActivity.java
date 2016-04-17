@@ -18,7 +18,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -161,20 +160,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+        // Check for a valid password
+        if (UserValidation.isPasswordValid(password, getApplicationContext())!=null) {
+            mPasswordView.setError(UserValidation.isPasswordValid(password, getApplicationContext()));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+        // Check for a valid email
+        if (UserValidation.isEmailValid(email, getApplicationContext())!=null) {
+            mEmailView.setError(UserValidation.isEmailValid(email, getApplicationContext()));
             focusView = mEmailView;
             cancel = true;
         }
@@ -196,14 +191,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         finish();
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@")&&email.contains(".")&&email.length()<=50;
-    }
-
-    private boolean isPasswordValid(String password) {
-        return password.length() > 4&&password.length()<=50;
     }
 
     /**
