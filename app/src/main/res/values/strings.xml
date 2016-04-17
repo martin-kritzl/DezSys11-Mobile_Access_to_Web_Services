@@ -30,6 +30,7 @@
     <string name="title_activity_register">Register</string>
     <string name="action_register">Register</string>
     <string name="action_back_to_login">Back</string>
+    <string name="error_user_already_assigned">The name is already assigned to another user</string>
 
     <!-- Strings related to home -->
     <string name="text_welcome">You are successfully logged in</string>
