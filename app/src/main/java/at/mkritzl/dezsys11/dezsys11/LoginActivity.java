@@ -28,6 +28,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +45,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -205,13 +199,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@")&&email.contains(".")&&email.length()<=50;
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 4&&password.length()<=50;
     }
 
     /**
@@ -323,14 +315,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             try {
                 this.response = RestHandler.login(getApplicationContext(), this.mEmail, this.mPassword);
-                if (response.getStatus()==200) return true;
-                System.out.println(response.getStatus());
-                System.out.println(response.getMessage());
             } catch (RestException e) {
                 e.printStackTrace();
                 return false;
             }
-            return false;
+            return true;
         }
 
         @Override
@@ -339,9 +328,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                redirect(HomeActivity.class);
+                if (this.response.getStatus() == 200) {
+                    redirect(HomeActivity.class);
+                } else if (this.response.getStatus()==403) {
+                    mEmailView.setError(getString(R.string.error_invalid_credentials));
+                } else if(response.getStatus()==0) {
+                    Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_LONG).show();
+                }
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                Toast.makeText(getApplicationContext(), R.string.error_server_unreachable, Toast.LENGTH_LONG).show();
                 mPasswordView.requestFocus();
             }
         }
