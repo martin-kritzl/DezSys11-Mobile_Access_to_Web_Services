@@ -11,7 +11,6 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -32,7 +31,7 @@ import at.mkritzl.dezsys11.dezsys11.utils.UserValidation;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * Created by mkritzl on 17.04.2016.
+ * This class is used as a template for registration and login of a user
  */
 public class UserActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
@@ -40,15 +39,18 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    private AsyncTask mAuthTask;
-
     // UI references.
     protected AutoCompleteTextView mEmailView;
     protected EditText mPasswordView;
     protected View mProgressView;
     protected View mLoginFormView;
-    protected Object clazz;
 
+    /**
+     * Checks if the entered email and password follow the guidelines. If this is has not happend
+     * the associated errors will be shown.
+     *
+     * @return if the input follows the guidelines
+     */
     protected boolean checkInput() {
         // Reset errors.
         mEmailView.setError(null);
@@ -76,8 +78,6 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
             return false;
         } else {
@@ -85,6 +85,11 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    /**
+     * Checks if the contacts can be read
+     *
+     * @return if the contacts can be read
+     */
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -107,6 +112,9 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
         return false;
     }
 
+    /**
+     * Starts the autocomplete of contacts
+     */
     protected void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -128,6 +136,11 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    /**
+     * Redirects to the specified Activity
+     *
+     * @param clazz The destination Activity
+     */
     protected void redirect(Class<? extends Activity> clazz) {
         finish();
         Intent intent = new Intent(this, clazz);
@@ -202,10 +215,6 @@ public class UserActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
-    }
-
-    public void setClass(Object clazz) {
-        this.clazz = clazz;
     }
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {

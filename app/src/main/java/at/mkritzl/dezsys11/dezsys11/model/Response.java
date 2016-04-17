@@ -1,7 +1,7 @@
 package at.mkritzl.dezsys11.dezsys11.model;
 
 /**
- * Created by mkritzl on 15.04.2016.
+ * The object that used for mapping the incoming http-message
  */
 public class Response {
 

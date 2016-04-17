@@ -18,7 +18,7 @@ import at.mkritzl.dezsys11.dezsys11.utils.RestException;
 import at.mkritzl.dezsys11.dezsys11.utils.RestHandler;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers registration via email/password.
  */
 public class RegisterActivity extends UserActivity {
 
@@ -69,7 +69,7 @@ public class RegisterActivity extends UserActivity {
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * errors are presented and no actual registration attempt is made.
      */
     private void attemptRegister() {
         if (mAuthTask != null) {
@@ -91,7 +91,7 @@ public class RegisterActivity extends UserActivity {
     }
 
     /**
-     * Represents an asynchronous login/registration task used to authenticate
+     * Represents an asynchronous regsiter task used to authenticate
      * the user.
      */
     public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {

@@ -9,10 +9,17 @@ import java.util.List;
 import at.mkritzl.dezsys11.dezsys11.R;
 
 /**
- * Created by mkritzl on 17.04.2016.
+ * Used for validating the entered email and password of the user
  */
 public class UserValidation {
 
+    /**
+     * Checks the entered email. Must contain "@" and "." and length &lt;= 50
+     *
+     * @param email The entered email
+     * @param context The application context
+     * @return null if all is correct; String with the textual failure
+     */
     public static String isEmailValid(String email, Context context) {
         List<String> errors = new LinkedList<String>();
         if (TextUtils.isEmpty(email))
@@ -29,6 +36,13 @@ public class UserValidation {
         return beautifyError(errors);
     }
 
+    /**
+     * Checks the entered password. Must have a length &lt;= 50 and &gt;4
+     *
+     * @param password The entered password
+     * @param context The application context
+     * @return null if all is correct; String with the textual failure
+     */
     public static String isPasswordValid(String password, Context context) {
         List<String> errors = new LinkedList<String>();
         if (TextUtils.isEmpty(password))
@@ -42,6 +56,12 @@ public class UserValidation {
         return beautifyError(errors);
     }
 
+    /**
+     * Used for connecting the failures with " & "
+     *
+     * @param errors a list of failures
+     * @return The representing string
+     */
     private static String beautifyError(List<String> errors) {
         if (errors.size()==0) return null;
 

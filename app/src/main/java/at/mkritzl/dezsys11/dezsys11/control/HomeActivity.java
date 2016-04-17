@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import at.mkritzl.dezsys11.dezsys11.R;
 
+/**
+ * A home screen that is shown when the user is logged in.
+ */
 public class HomeActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +29,11 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Redirects to the specified Activity
+     *
+     * @param clazz The destination Activity
+     */
     private void redirect(Class<? extends Activity> clazz) {
         finish();
         Intent intent = new Intent(this, clazz);
